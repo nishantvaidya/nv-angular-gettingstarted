@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of filteredPrdoucts">
           <td>
             <img *ngIf='showImage'
                   [src]='product.imageUrl' 
