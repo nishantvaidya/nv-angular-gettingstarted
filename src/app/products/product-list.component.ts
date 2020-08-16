@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit{
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
-  //listFilter: string = 'cart';
+  errorMessage: string ;
    _listFilter: string;
    filteredPrdoucts: IProduct[];
 
@@ -39,9 +39,13 @@ export class ProductListComponent implements OnInit{
 
  ngOnInit(): void {
    console.log("On Init");
-   this.products = this.productService.getProduct();
-   this.filteredPrdoucts = this.products;
-   
+    this.productService.getProduct().subscribe({
+     next: products => {
+      this.products  = products;
+      this.filteredPrdoucts = this.products;
+     },
+     error: err => this.errorMessage = err
+    });  
  }
 
  performFilter(filterBy: string): IProduct[]{
