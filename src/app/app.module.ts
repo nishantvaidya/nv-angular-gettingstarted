@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpCommonModule} from '@angular/common/HttpCommonModule';
+import { HttpClientModule } from '@angular/common/http';
+
 import { FormsModule }  from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -13,12 +14,13 @@ import { StarComponent } from './shared/star.component';
     AppComponent,
     ProductListComponent,
     ConvertToSpacesPipe,
-    StarComponent,
-    HttpCommonModule
+    StarComponent
+    
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
