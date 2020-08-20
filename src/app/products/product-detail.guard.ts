@@ -16,7 +16,7 @@ export class ProductDetailGuard implements CanActivate{
 
     if(isNaN(id) && id < 1){
       console.log('Invalid product Id');
-      this.router.navigate(['\products']);
+      this.router.navigate(['/products']);
       return false;
     }; 
       return true;
