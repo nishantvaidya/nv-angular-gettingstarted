@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
     StarComponent,
     CommonModule,
     FormsModule
-
   ]
 })
 export class SharedModule{
