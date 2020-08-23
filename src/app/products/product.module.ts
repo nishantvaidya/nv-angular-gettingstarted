@@ -12,21 +12,20 @@ import { ProductDetailGuard } from './product-detail.guard';
   declarations:[
     ProductDetailComponent,
     ProductListComponent,
-    StarComponent,
     ConvertToSpacesPipe
   ],
   imports :[
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild([
+   RouterModule.forChild([
       { path: 'products', component: ProductListComponent},
       { 
         path: 'products/:id', 
         component: ProductDetailComponent,
         canActivate: [ProductDetailGuard ]
         },
-    ])
+    ]),
+  
   ]
+  
 })
 
 export class ProductModule {
