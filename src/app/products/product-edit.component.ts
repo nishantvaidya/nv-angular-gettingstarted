@@ -6,6 +6,7 @@ import { GenericValidator } from "../shared/generic.validator";
 import { NumberValidators } from '../shared/number.validator';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "./product.service";
+import { debounceTime, merge} from "rxjs/operators";
 
 Component({
   templateUrl:'./product-edit.component.html'
@@ -82,8 +83,30 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
 
     const controlBlurs : Observable<any>[] = this.formInputElements.
               map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur') );
-
-
-
+    
+    merge(this.productForm.valueChanges, ...controlBlurs).pipe(
+      debounceTime(800)
+    ).subscribe( value =>{
+      this.displayMessage = this.genericValidator.processMessage(this.productForm);
+    });
   }
+
+  addTag() : void {
+    this.tags.push(new FormControl());
+  }
+
+  deleteTag(index: number): void {
+    this.tags.removeAt(index);
+    this.tags.markAsDirty();
+  }
+
+
+  getProduct(id: number): void {
+    this.productService.getProduct(id ).subscribe({
+      next: (product: IProduct) => this.displayProduct(product),
+      error: err => this.errorMessage = err;
+    });
+  }
+
+
 }
