@@ -1,10 +1,13 @@
+import { FormGroup} from '@angular/forms';
+
 export class GenericValidator{
 
-  constructor(private validationMessage:{[key: string} : {[key: string]: string}){
+  constructor(private validationMessages:{ [key: string] : {[key: string]: string}}){
+    
 
   }
 
-  processMessage(container: FormGroup):{ [key: stting]: string }{
+  processMessage(container: FormGroup):{ [key: string]: string }{
     const messages = {};
     for(const controlKey in container.controls){
       if(container.controls.hasOwnProperty(controlKey)){
@@ -13,11 +16,11 @@ export class GenericValidator{
           const childMessages = this.processMessage(c);
           Object.assign(messages, childMessages);
         }else{
-          if(this.validationMessage[controlKey]){
+          if(this.validationMessages[controlKey]){
             messages[controlKey] = ''
             if((c.dirty || c.touched) && c.errors){
               Object.keys(c.errors).map( messageKey =>{
-                if(this.validationMessage[controlKey][messageKey]){
+                if(this.validationMessages[controlKey][messageKey]){
                   messages[controlKey] += this.validationMessages[controlKey][messageKey] + ' ';
                 }
               });
