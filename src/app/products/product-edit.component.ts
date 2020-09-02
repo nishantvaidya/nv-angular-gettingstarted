@@ -108,5 +108,70 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
     });
   }
 
+  displayProduct(product: IProduct): void{
+    if(this.productForm){
+      this.productForm.reset();
+    }
+    this.product = product;
+    if(this.product.productId === 0){
+      this.pageTitle = 'Add Product';
+    }else{
+      this.pageTitle = `Edit Product: ${this.product.productName}`;
+    }
+
+    this.productForm.patchValue({
+      productName: this.product.productName,
+      productCode: this.product.productCode,
+      starRating: this.product.starRating,
+      description: this.product.description
+    })
+
+    this.productForm.setControl('tags', this.fb.array(this.product.tags ||[]));
+  }
+
+  deleteProduct(product: IProduct): void{
+    if(this.product.productId === 0){
+      this.onSaveComplete();
+    }else{
+      if(confirm(`Really delete the product: ${this.product.productName}`)){
+        this.productService.deleteProduct(product.productId).subscribe(
+          {
+            next: () => this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          }
+        );
+      }
+    }
+  }
+
+  onSaveComplete():void{
+    this.productForm.reset();
+    this.router.navigate(['/products']);
+  }
+
+  saveProduct(): void {
+    if(this.productForm.valid){
+      if(this.productForm.dirty){
+        const p = {...this.product, ...this.productForm.value};
+        if(p.id === 0){
+          this.productService.createProduct(p).subscribe({
+            next: () => this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          });
+        }else{
+          this.productService.updateProduct(p).subscribe({
+            next:()=> this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          });
+        }
+      }else{
+        this.onSaveComplete();
+      }
+    }else {
+      this.errorMessage = 'Please correct the validation errors.';
+    }
+
+  }
+
 
 }
