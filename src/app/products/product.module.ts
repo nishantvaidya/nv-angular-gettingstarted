@@ -5,6 +5,10 @@ import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
+import { ProductEditComponent } from './product-edit.component';
+import  { ProductEditGuard } from './product-edit.guard';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations:[
@@ -13,15 +17,22 @@ import { SharedModule } from '../shared/shared.module';
     ConvertToSpacesPipe
   ],
   imports :[
+   SharedModule,
+   ReactiveFormsModule,
+   InMemoryWebApiModule,
    RouterModule.forChild([
       { path: 'products', component: ProductListComponent},
       { 
         path: 'products/:id', 
         component: ProductDetailComponent,
         canActivate: [ProductDetailGuard ]
-        },
-    ]),
-    SharedModule
+      },
+      { 
+        path: 'products/:id/edit', 
+        component: ProductEditComponent,
+        canActivate: [ProductEditGuard ]
+      }
+    ])
   ]
   
 })
