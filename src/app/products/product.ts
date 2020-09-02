@@ -2,6 +2,7 @@ export interface IProduct {
   productId: number;
   productName: string;
   productCode: string;
+  tags?: string[];
   releaseDate: Date,
   description: string;
   price: number;
