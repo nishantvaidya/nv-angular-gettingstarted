@@ -6,9 +6,19 @@ import { Component } from '@angular/core';
   template: `
     <nav class='navbar navbar-expand navbar-light bg-light'>
     <a class='navbar-brand'>{{pageTitle}}</a>
-    <ul class='nav nav-pills'>
-      <li><a class='nav-link' [routerLink]="['/welcome']">Home</a></li>
-      <li><a class='nav-link' [routerLink]="['/products']">Product List</a></li>
+    <ul class='navbar-nav'>
+      <li class='nav-item'>
+        <a class='nav-link' routerLinkActive='active'
+        [routerLink]="['/welcome']">Home</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}"
+        [routerLink]="['/products']">Product List</a>
+      </li>
+       <li class='nav-item'>
+        <a class='nav-link' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}"
+        [routerLink]="['/products/0/edit']">Add Product</a>
+      </li>
     </ul>
     </nav>
     <div class='container'>
