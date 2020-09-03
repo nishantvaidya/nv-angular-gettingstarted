@@ -73,8 +73,7 @@ export class ProductService {
       price: null,
       description: null,
       starRating: null,
-      imageUrl: null,
-      caculateDiscount: null
+      imageUrl: null
     };
 
   }
