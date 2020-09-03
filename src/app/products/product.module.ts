@@ -31,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       { 
         path: 'products/:id/edit', 
         component: ProductEditComponent,
-        canActivate: [ProductEditGuard ]
+        canDeactivate: [ProductEditGuard ]
       }
     ])
   ]

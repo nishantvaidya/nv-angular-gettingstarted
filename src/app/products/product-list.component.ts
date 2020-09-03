@@ -18,6 +18,7 @@ export class ProductListComponent implements OnInit{
   errorMessage: string ;
    _listFilter: string;
    filteredPrdoucts: IProduct[];
+   products: IProduct[] = [];
 
 
    get listFilter(){

@@ -1,12 +1,12 @@
 import { OnInit, Component, ViewChildren, AfterViewInit, OnDestroy, ElementRef } from "@angular/core";
 import { FormGroup, FormControlName, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { IProduct} from './product'
-import { Subscription, Observable, fromEvent } from "rxjs";
+import { Subscription, Observable, fromEvent, merge } from "rxjs";
 import { GenericValidator } from "../shared/generic.validator";
 import { NumberValidators } from '../shared/number.validator';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "./product.service";
-import { debounceTime, merge} from "rxjs/operators";
+import { debounceTime } from "rxjs/operators";
 
 @Component({
   templateUrl:'./product-edit.component.html'
