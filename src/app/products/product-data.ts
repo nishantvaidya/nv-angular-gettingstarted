@@ -4,7 +4,7 @@ import { IProduct } from './product';
 export class ProductData implements InMemoryDbService{
   createDb(): { products: IProduct[]} {
     const products: IProduct[] = [
-      {
+        {
         productId: 1,
         productName: 'Leaf Rake',
         productCode: 'GDN-0011',
@@ -56,9 +56,9 @@ export class ProductData implements InMemoryDbService{
         starRating: 4.6,
         imageUrl: 'assets/images/xbox-controller.png'
       }
+    
     ];
     return { products };
   }
 }
 
-}
