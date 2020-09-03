@@ -13,10 +13,10 @@
                 placeholder="Name (Required)"
                 formControlName="productName"
                 [ngClass]="{'is-invalid': displayMessage.productName }">
-          <span class="invalid-feedback">{{ displayMessage.productName}}
+          <span class="invalid-feedback">{{ displayMessage.productName}}</span>
         </div>
-      <div>
-       <div class="form-group row mb-2">
+      </div>
+      <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label" for="productCodeId">Product Code</label>
         <div class="col-md-8">
           <input class="form-control"
@@ -25,9 +25,9 @@
                 placeholder="Code (Required)"
                 formControlName="productCode"
                 [ngClass]="{'is-invalid': displayMessage.productCode }">
-          <span class="invalid-feedback">{{ displayMessage.productCode}}
+          <span class="invalid-feedback">{{ displayMessage.productCode}}</span>
         </div>
-      <div>
+      </div>
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label" for="starRatingId">Star Rating (1-5)</label>
         <div class="col-md-8">
@@ -37,9 +37,9 @@
                 placeholder="Rating (Required)"
                 formControlName="starRating"
                 [ngClass]="{'is-invalid': displayMessage.starRating }">
-          <span class="invalid-feedback">{{ displayMessage.starRating}}
+          <span class="invalid-feedback">{{ displayMessage.starRating}}</span>
         </div>
-      <div>
+      </div>
       <div formArrayName="tags">
        <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label" [attr.for]="i">Tag</label>
@@ -58,7 +58,7 @@
           </button>
         </div>
        </div>  
-      <div>
+      </div>
        <div class="row">
         <div class="col-md-2 mb-2">
           <button class="btn btn-outline-secondary btn-sm"
@@ -116,4 +116,4 @@
    <div class="alert alert-danger"
        *ngIf="errorMessage">{{errorMessage}}
   </div>
-</div>
+  </div>

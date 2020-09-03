@@ -14,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations:[
     ProductDetailComponent,
     ProductListComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    ProductEditComponent
   ],
   imports :[
    SharedModule,

@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "./product.service";
 import { debounceTime, merge} from "rxjs/operators";
 
-Component({
+@Component({
   templateUrl:'./product-edit.component.html'
 })
 
