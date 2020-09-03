@@ -26,7 +26,7 @@ export class ProductService {
     if (id === 0) {
       return of(this.initializeProduct());
     }
-    const url = `this.productUrl/${id}`;
+    const url = `${this.productUrl}/${id}`;
     return this.http.get<IProduct>(url)
           .pipe(
             tap(data => console.log('get Product: ' + JSON.stringify(data))),
@@ -46,7 +46,7 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<{}>{
     const headers = new HttpHeaders({'content-type': 'application/json'});
-    const url = `this.productUrl/${id}`;
+    const url = `${this.productUrl}/${id}`;
     return this.http.delete<IProduct>(url, { headers }).pipe(
       tap(data => console.log('deleteProduct: '+ id)),
       catchError(this.handleError)
@@ -55,7 +55,7 @@ export class ProductService {
 
   updateProduct(product: IProduct): Observable<IProduct>{
     const headers = new HttpHeaders({'content-type': 'application/json'});
-    const url = `this.productUrl/${product.productId}`;
+    const url = `${this.productUrl}/${product.productId}`;
     return this.http.put<IProduct>(url, product, { headers }).pipe(
       tap(() => console.log('updateProduct: ' + product.productId)),
       map(() => product),
