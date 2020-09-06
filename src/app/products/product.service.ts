@@ -57,7 +57,7 @@ export class ProductService {
     const headers = new HttpHeaders({'content-type': 'application/json'});
     const url = `${this.productUrl}/${product.id}`;
     return this.http.put<IProduct>(url, product, { headers }).pipe(
-      tap(() => console.log('updateProduct: ' + product.productId)),
+      tap(() => console.log('updateProduct: ' + product.id)),
       map(() => product),
       catchError(this.handleError)
     )
