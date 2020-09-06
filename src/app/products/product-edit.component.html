@@ -48,15 +48,15 @@
                 [id]="i"
                 type="text"
                 placeholder="Tag"
-                formControlName="i">
-          
+                [formControlName]="i">
+           </div>
           <button class="col-md-1 btn btn-outline-warning btn-sm"
             type="button"
             title="Delete this search tag"
             (click)="DeleteTag(i)">
             Delete tag
           </button>
-        </div>
+       
        </div>  
       </div>
        <div class="row">
