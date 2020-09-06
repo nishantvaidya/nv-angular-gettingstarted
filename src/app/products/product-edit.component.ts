@@ -113,7 +113,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
       this.productForm.reset();
     }
     this.product = product;
-    if(this.product.productId === 0){
+    if(this.product.id === 0){
       this.pageTitle = 'Add Product';
     }else{
       this.pageTitle = `Edit Product: ${this.product.productName}`;
@@ -130,11 +130,11 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   deleteProduct(product: IProduct): void{
-    if(this.product.productId === 0){
+    if(this.product.id === 0){
       this.onSaveComplete();
     }else{
       if(confirm(`Really delete the product: ${this.product.productName}`)){
-        this.productService.deleteProduct(product.productId).subscribe(
+        this.productService.deleteProduct(product.id).subscribe(
           {
             next: () => this.onSaveComplete(),
             error: err => this.errorMessage = err

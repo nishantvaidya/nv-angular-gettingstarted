@@ -36,7 +36,7 @@ export class ProductService {
 
   createProduct(product: IProduct): Observable<IProduct> {
     const headers = new HttpHeaders({'content-type': 'application/json'});
-    product.productId = null;
+    product.id = null;
 
     return this.http.post<IProduct>(this.productUrl, product,  { headers }).pipe(
       tap(data => console.log('createProduct: ' + JSON.stringify(data))),
@@ -55,7 +55,7 @@ export class ProductService {
 
   updateProduct(product: IProduct): Observable<IProduct>{
     const headers = new HttpHeaders({'content-type': 'application/json'});
-    const url = `${this.productUrl}/${product.productId}`;
+    const url = `${this.productUrl}/${product.id}`;
     return this.http.put<IProduct>(url, product, { headers }).pipe(
       tap(() => console.log('updateProduct: ' + product.productId)),
       map(() => product),
@@ -65,7 +65,7 @@ export class ProductService {
 
   initializeProduct():IProduct {
      return {
-      productId: 0,
+      id: 0,
       productName: null,
       productCode: null,
       tags: [''],
