@@ -5,6 +5,7 @@ import { RouterModule }  from '@angular/router';
 import { AppComponent } from './app.component';
 import { ProductModule } from './products/product.module';
 import { AppRoutingModule } from './app.routing.module';
+import { httpInterceptorProviders } from './interceptors/config.interceptors';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app.routing.module';
     AppRoutingModule
     
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers:[ httpInterceptorProviders]
 })
 export class AppModule { }
