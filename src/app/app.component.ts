@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoaderService } from "./shared/loader.service";
 
 
 @Component({
@@ -22,11 +23,14 @@ import { Component } from '@angular/core';
     </ul>
     </nav>
     <div class='container'>
-      <router-outlet></router-outlet>
+     <div *ngIf="loaderService.showLoader" class="loader"> hi</div>
+      <router-outlet> </router-outlet>
     </div>
   `
 })
 export class AppComponent {
   pageTitle: string = 'Acme Product Management';
+
+  constructor(private loaderService: LoaderService){}
  
 }

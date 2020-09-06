@@ -8,11 +8,11 @@ export class LoaderService {
 
   constructor( ){}
 
-   show(): void{
+   show(){
      this.showLoader = true;
    }
 
-   hide(): void {
+   hide(){
      this.showLoader = false;
    }
 
