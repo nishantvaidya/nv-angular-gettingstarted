@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { ProductModule } from './products/product.module';
 import { AppRoutingModule } from './app.routing.module';
 import { httpInterceptorProviders } from './interceptors/config.interceptors';
+import { LoaderComponent } from './shared/loader.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

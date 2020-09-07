@@ -1,4 +1,4 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from "@angular/common/http";
 import { Injector, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { delay, finalize } from "rxjs/operators";
@@ -7,18 +7,48 @@ import { LoaderService } from "../shared/loader.service";
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor{
 
-  constructor(private loaderService: LoaderService){}
+  private requests: HttpRequest<any>[] = [];
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
+  constructor(private loaderService: LoaderService) { }
 
-    console.log('LoaderInterceptor');
+  removeRequest(req: HttpRequest<any>) {
+    const i = this.requests.indexOf(req);
+    if (i >= 0) {
+      this.requests.splice(i, 1);
+    }
+    this.loaderService.isLoading.next(this.requests.length > 0);
+  }
 
-    this.loaderService.show();
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    return next.handle(req).pipe(
-      delay(3000),
-      finalize(() => this.loaderService.hide() )
-    );
+    this.requests.push(req);
 
+    console.log("No of requests--->" + this.requests.length);
+
+    this.loaderService.isLoading.next(true);
+    return Observable.create(observer => {
+      const subscription = next.handle(req).pipe( delay(3000))
+        .subscribe(
+          event => {
+            if (event instanceof HttpResponse) {
+              this.removeRequest(req);
+              observer.next(event);
+            }
+          },
+          err => {
+            alert('error' + err);
+            this.removeRequest(req);
+            observer.error(err);
+          },
+          () => {
+            this.removeRequest(req);
+            observer.complete();
+          });
+      // remove request from queue when cancelled
+      return () => {
+        this.removeRequest(req);
+        subscription.unsubscribe();
+      };
+    });
   }
 }

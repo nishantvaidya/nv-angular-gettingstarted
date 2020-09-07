@@ -23,8 +23,8 @@ import { LoaderService } from "./shared/loader.service";
     </ul>
     </nav>
     <div class='container'>
-     <div *ngIf="loaderService.showLoader" class="loader"> hi</div>
-      <router-outlet> </router-outlet>
+     
+      <router-outlet><pm-loader></pm-loader></router-outlet>
     </div>
   `
 })
