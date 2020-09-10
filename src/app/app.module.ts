@@ -10,21 +10,22 @@ import { LoaderComponent } from './shared/loader.component';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './message/message.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoaderComponent
+    LoaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+     BrowserAnimationsModule,
     ProductModule,
-    AppRoutingModule,
     UserModule,
     MessageModule,
-    BrowserAnimationsModule
-    
+    AppRoutingModule
   ],
   bootstrap: [AppComponent],
   providers:[ httpInterceptorProviders]
