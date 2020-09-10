@@ -16,7 +16,7 @@
                  ngModel
                  name="userName"
                  #userNameVar="ngModel"
-                 [ngClass]="{'is-invalid: (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid'}"/>
+                 [ngClass]="{'is-invalid': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid}"/>
             <span class="invalid-feedback">
               <span *ngIf="userNameVar.errors?.required">
                 User Name is required.
@@ -36,7 +36,7 @@
                  ngModel
                  name="password"
                  #passwordVar="ngModel"
-                 [ngClass]="{'is-invalid: (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid'}"/>
+                 [ngClass]="{'is-invalid': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid}"/>
             <span class="invalid-feedback">
               <span *ngIf="passwordVar.errors?.required">
                 Password is required.
@@ -56,7 +56,7 @@
            <button class="btn btn-outline-secondary"
                   type="button"
                   style="width:80px"
-                  [routerLinl]="['/welcome']">
+                  [routerLink]="['/welcome']">
             Cancel
           </button>
           </div>  
