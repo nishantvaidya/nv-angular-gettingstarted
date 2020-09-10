@@ -9,6 +9,7 @@ import { httpInterceptorProviders } from './interceptors/config.interceptors';
 import { LoaderComponent } from './shared/loader.component';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './message/message.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MessageModule } from './message/message.module';
     ProductModule,
     AppRoutingModule,
     UserModule,
-    MessageModule
+    MessageModule,
+    BrowserAnimationsModule
     
   ],
   bootstrap: [AppComponent],

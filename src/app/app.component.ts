@@ -3,6 +3,7 @@ import { LoaderService } from "./shared/loader.service";
 import { AuthService } from './user/auth.service';
 import { MessageService } from './message/message.service';
 import { Router } from '@angular/router';
+import { slideInAnimation} from './app.animation';
 
 
 @Component({
@@ -47,7 +48,7 @@ import { Router } from '@angular/router';
      <div class="row">
       <div class="col-md-10"
       [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
-        <router-outlet><pm-loader></pm-loader></router-outlet>
+        <router-outlet #o="outlet"><pm-loader></pm-loader></router-outlet>
       </div>
       <div class="col-md-2">
         <router-outlet name="popup"></router-outlet>
@@ -55,7 +56,8 @@ import { Router } from '@angular/router';
 
       </div>
     </div>
-  `
+  `,
+  animations: [slideInAnimation]
 })
 export class AppComponent {
   pageTitle: string = 'Acme Product Management';
