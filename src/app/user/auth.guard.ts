@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate, CanLoad{
 
   constructor(private authService: AuthService, private router: Router){ }
 
-    CanActivate(
+    canActivate(
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate, CanLoad{
 
   }
 
-  checkLoggedIn(url: String): boolean{
+  checkLoggedIn(url: string): boolean{
     if(this.authService.isLoggedIn){
       return true;
     }
