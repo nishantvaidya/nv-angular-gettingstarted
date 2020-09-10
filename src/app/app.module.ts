@@ -7,6 +7,8 @@ import { ProductModule } from './products/product.module';
 import { AppRoutingModule } from './app.routing.module';
 import { httpInterceptorProviders } from './interceptors/config.interceptors';
 import { LoaderComponent } from './shared/loader.component';
+import { UserModule } from './user/user.module';
+import { MessageModule } from './message/message.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { LoaderComponent } from './shared/loader.component';
     BrowserModule,
     HttpClientModule,
     ProductModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UserModule,
+    MessageModule
     
   ],
   bootstrap: [AppComponent],
