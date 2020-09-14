@@ -4,8 +4,9 @@
   </div>
   <div class='card-footer'>
      <button class='btn btn-primary'
-     (click)= "onBack()"
-     style="width:80px">
+            style="width:80px"
+            [routerLink]="['/products']"
+             queryParamsHandling="preserve">
      <a class="fa fa-chevron-left"></a>
       Back
      </button>

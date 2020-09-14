@@ -37,7 +37,10 @@
                   [style.margin.px]='imageMargin'> 
           </td>
           <td>
-            <a [routerLink]="['/products', product.id]">{{ product.productName }}</a>
+            <a [routerLink]="['/products', product.id]"
+               [queryParams]="{ filterBy: listFilter, showImage: showImage }">
+                {{ product.productName }}
+            </a>
             </td>
           <td>{{ product.productCode | lowercase | convertToSpaces: '-'}}</td>
           <td>{{ product.releaseDate }}</td>
