@@ -1,6 +1,6 @@
 import { OnInit, Component, ViewChildren, AfterViewInit, OnDestroy, ElementRef } from "@angular/core";
 import { FormGroup, FormControlName, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { IProduct} from './product'
+import { IProduct, ProductResolved} from './product'
 import { Subscription, Observable, fromEvent, merge } from "rxjs";
 import { GenericValidator } from "../shared/generic.validator";
 import { NumberValidators } from '../shared/number.validator';
@@ -12,14 +12,13 @@ import { debounceTime } from "rxjs/operators";
   templateUrl:'./product-edit.component.html'
 })
 
-export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
+export class ProductEditComponent implements OnInit, AfterViewInit{
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   pageTitle = 'Product Edit';
   errorMessage:string;
   productForm: FormGroup
   product: IProduct;
-  private sub: Subscription;
   displayMessage:{[key: string]: string} = {};
   private validationMessages:{[key: string]: {[key: string]: string}};
   private genericValidator: GenericValidator;
@@ -53,6 +52,8 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
 
 
   ngOnInit(): void{
+
+    const resolvedData : ProductResolved = this.route.snapshot.data['resolvedData'];
     this.productForm = this.fb.group({
       productName:['',[
         Validators.required,
@@ -64,20 +65,10 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
       tags: this.fb.array([]),
       description: ''
     });
-
-    this.sub =  this.route.paramMap.subscribe(
-      params =>{
-        const id = +params.get('id');
-        this.getProduct(id);
-      }
-    );
-
+     this.getProduct(resolvedData);
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-
-  }
+  
 
   ngAfterViewInit(): void{
 
@@ -101,11 +92,10 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
 
-  getProduct(id: number): void {
-    this.productService.getProduct(id).subscribe({
-      next: (product: IProduct) => this.displayProduct(product),
-      error: err => this.errorMessage = err
-    });
+  getProduct(resolvedData: ProductResolved): void {
+     this.displayProduct(resolvedData.product);
+    this.errorMessage = resolvedData.error;
+    
   }
 
   displayProduct(product: IProduct): void{

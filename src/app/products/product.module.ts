@@ -33,7 +33,8 @@ import { ProductResolver } from './product-resolver.service';
       { 
         path: 'products/:id/edit', 
         component: ProductEditComponent,
-        canDeactivate: [ProductEditGuard ]
+        canDeactivate: [ProductEditGuard ],
+        resolve: { resolvedData: ProductResolver }
       }
     ])
   ]
