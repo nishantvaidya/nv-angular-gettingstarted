@@ -53,7 +53,8 @@ export class ProductEditComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void{
 
-    const resolvedData : ProductResolved = this.route.snapshot.data['resolvedData'];
+    
+
     this.productForm = this.fb.group({
       productName:['',[
         Validators.required,
@@ -65,7 +66,12 @@ export class ProductEditComponent implements OnInit, AfterViewInit{
       tags: this.fb.array([]),
       description: ''
     });
-     this.getProduct(resolvedData);
+
+    this.route.data.subscribe(data =>{
+      const resolvedData : ProductResolved = data['resolvedData'];
+      this.getProduct(resolvedData);
+    });
+     
   }
 
   
@@ -93,12 +99,15 @@ export class ProductEditComponent implements OnInit, AfterViewInit{
 
 
   getProduct(resolvedData: ProductResolved): void {
+     if(resolvedData.product){
      this.displayProduct(resolvedData.product);
+     }
     this.errorMessage = resolvedData.error;
     
   }
 
   displayProduct(product: IProduct): void{
+    console.log('Display product:' + JSON.stringify(product));
     if(this.productForm){
       this.productForm.reset();
     }
