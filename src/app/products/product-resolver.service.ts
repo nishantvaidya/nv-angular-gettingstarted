@@ -21,17 +21,13 @@ export class ProductResolver implements Resolve<ProductResolved> {
       return of({error: message, product: null});
     }
      return this.productService.getProduct(+id).pipe(
-       map(data => {product: data}),
+       map(product => ({product})),
        catchError(error => {
           const message = `Retrieval error: ${id}`;
           console.error(message);
-          return of({error: message, product: null});
-       })
-
-     );
+          return of({error: message, product: null })
+       }));
+    
   }
-
-
-
 
 }

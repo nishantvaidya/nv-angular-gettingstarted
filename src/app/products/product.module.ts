@@ -10,7 +10,7 @@ import  { ProductEditGuard } from './product-edit.guard';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductData } from './product-data';
-
+import { ProductResolver } from './product-resolver.service';
 @NgModule({
   declarations:[
     ProductDetailComponent,
@@ -27,7 +27,8 @@ import { ProductData } from './product-data';
       { 
         path: 'products/:id', 
         component: ProductDetailComponent,
-        canActivate: [ProductDetailGuard ]
+        canActivate: [ProductDetailGuard ],
+        resolve: { resolvedData: ProductResolver }
       },
       { 
         path: 'products/:id/edit', 

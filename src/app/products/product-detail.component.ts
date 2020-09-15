@@ -1,6 +1,6 @@
 import { OnInit, Component } from "@angular/core";
 import  { ActivatedRoute, Router } from '@angular/router';
-import { IProduct } from "./product";
+import { IProduct, ProductResolved } from "./product";
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -8,26 +8,30 @@ import { IProduct } from "./product";
 })
 export class ProductDetailComponent implements OnInit {
 
-   pageTitle: string = 'Product Detail';
+   pageTitle: string;
    product: IProduct;
+   errroMessage : string;
 
    constructor(private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(){
-    let id = +this.route.snapshot.paramMap.get('id');
-    this.pageTitle += `: ${id}`;
-    this.product = {
-    "id": 1,
-    "productName": "Leaf Rake",
-    "productCode": "GDN-0011",
-    "releaseDate": "March 19, 2019",
-    "description": "Leaf rake with 48-inch wooden handle.",
-    "price": 19.95,
-    "starRating": 3.2,
-    "imageUrl": "assets/images/leaf_rake.png"
-    };
+    const resolvedData: ProductResolved = this.route.snapshot.data['resolvedData'];
+    console.log(`resolvedData: ${resolvedData.product}`);
+    this.errroMessage = resolvedData.error;
+    this.onProductRetrieved(resolvedData.product);
 
  }
+
+  onProductRetrieved(product:IProduct): void {
+    this.product = product;
+    if(this.product){
+      this.pageTitle = `Product Detail: ${product.productName}`;
+    }else{
+      this.pageTitle = 'No product found';
+    }
+
+
+  }
 
  onBack():void {
     this.router.navigate(['/products']);
