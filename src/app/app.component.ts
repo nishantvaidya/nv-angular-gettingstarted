@@ -23,7 +23,7 @@ import { slideInAnimation} from './app.animation';
       </li>
        <li class='nav-item'>
         <a class='nav-link' routerLinkActive='active'
-        [routerLink]="['/products/0/edit']">Add Product</a>
+        [routerLink]="['/products/0/edit']" [routerLinkActiveOptions]="{exact: true}">Add Product</a>
       </li>
     </ul>
     <ul class='navbar-nav ml-auto'>

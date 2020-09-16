@@ -12,6 +12,7 @@ import { MessageModule } from './message/message.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './page-not-found.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
