@@ -8,6 +8,7 @@ import { slideInAnimation} from './app.animation';
 
 @Component({
   selector: 'pm-root',
+  styleUrls:['./app.component.css'],
   template: `
     <nav class='navbar navbar-expand navbar-light bg-light'>
     <a class='navbar-brand'>{{pageTitle}}</a>
@@ -17,11 +18,11 @@ import { slideInAnimation} from './app.animation';
         [routerLink]="['/welcome']">Home</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}"
+        <a class='nav-link' routerLinkActive='active'
         [routerLink]="['/products']">Product List</a>
       </li>
        <li class='nav-item'>
-        <a class='nav-link' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}"
+        <a class='nav-link' routerLinkActive='active'
         [routerLink]="['/products/0/edit']">Add Product</a>
       </li>
     </ul>
