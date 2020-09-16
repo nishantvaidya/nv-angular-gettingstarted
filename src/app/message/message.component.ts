@@ -13,6 +13,7 @@ export class MessageComponent {
   constructor(private messageService:MessageService, private router: Router){}
   
   get messages(): string[]{
+    console.log("messages:"+ this.messageService.messages);
     return this.messageService.messages;
   }
 
