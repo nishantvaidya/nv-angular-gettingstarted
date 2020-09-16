@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoaderService } from "./shared/loader.service";
 import { AuthService } from './user/auth.service';
 import { MessageService } from './message/message.service';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Event } from '@angular/router';
 import { slideInAnimation} from './app.animation';
 
 
@@ -10,6 +10,7 @@ import { slideInAnimation} from './app.animation';
   selector: 'pm-root',
   styleUrls:['./app.component.css'],
   template: `
+    <span class="fa fa-spinner spinner" *ngIf="loading"></span>
     <nav class='navbar navbar-expand navbar-light bg-light'>
     <a class='navbar-brand'>{{pageTitle}}</a>
     <ul class='navbar-nav'>
@@ -61,14 +62,32 @@ import { slideInAnimation} from './app.animation';
   animations: [slideInAnimation]
 })
 export class AppComponent {
-  pageTitle: string = 'Acme Product Management';
+  pageTitle: string = 'Product Management';
+  loading: boolean = false;
 
   constructor(private loaderService: LoaderService,
               private authService: AuthService,
               private messageService: MessageService,
               private router : Router
 
-  ){}
+  ){
+    router.events.subscribe((routerEvent : Event)=>{
+        this.checkRouterEvent(routerEvent);
+    } );
+   }
+
+   checkRouterEvent(routerEvent : Event): void{
+      if(routerEvent instanceof NavigationStart){
+        this.loading = true;
+      }
+      if( routerEvent instanceof NavigationEnd ||
+          routerEvent instanceof NavigationCancel ||
+         routerEvent instanceof NavigationError){
+           this.loading = false;
+
+      }
+
+   }
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn
