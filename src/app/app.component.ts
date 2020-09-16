@@ -55,7 +55,6 @@ import { slideInAnimation} from './app.animation';
       <div class="col-md-2">
         <router-outlet name="popup"></router-outlet>
       </div>
-
       </div>
     </div>
   `,
@@ -105,12 +104,12 @@ export class AppComponent {
   }
 
   displayMessages(): void {
-    this.router.navigate([{ outlet: { popup : ['messages']}}]);
+    this.router.navigate([{ outlets: { popup : ['messages']}}]);
     this.messageService.isDisplayed = true;
   }
 
   hideMessages(): void {
-    this.router.navigate([{ outlet: { popup : [null]}}]);
+    this.router.navigate([{ outlets: { popup : null} } ]);
     this.messageService.isDisplayed = false;
 
   }
