@@ -114,6 +114,12 @@ export class AppComponent {
 
   }
 
+   close(): void {
+    this.router.navigate([{ outlets: { popup : null} } ]);
+    this.messageService.isDisplayed = false;
+
+  }
+
   logOut(): void {
     this.authService.logout();
     this.router.navigateByUrl('/welcome');
