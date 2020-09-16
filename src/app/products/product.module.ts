@@ -9,10 +9,10 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductData } from './product-data';
 import { ProductResolver } from './product-resolver.service';
-import { ProductEditInfoComponent } from './product-edit/product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit/product-edit-tags.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import  { ProductEditGuard } from './product-edit/product-edit.guard';
+import { ProductEditInfoComponent } from './product-edit/product-edit.info.component';
 
 @NgModule({
   declarations:[

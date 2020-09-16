@@ -1,5 +1,5 @@
 <div class="card-body">
-	<form novalidate #productForm="ngForm">
+	<form novalidate (ngSubmit)="saveProduct()" [formGroup]="productForm">
 		<fieldset>
 			<legend> Basic Product Information</legend>
 			<div class="form-group row mb-2">

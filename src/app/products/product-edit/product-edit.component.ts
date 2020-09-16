@@ -9,7 +9,8 @@ import { ProductService } from "../product.service";
 import { debounceTime } from "rxjs/operators";
 
 @Component({
-  templateUrl:'./product-edit.component.html'
+  templateUrl:'./product-edit.component.html',
+  styleUrls: ['./product-edit.component.css']
 })
 
 export class ProductEditComponent implements OnInit, AfterViewInit{

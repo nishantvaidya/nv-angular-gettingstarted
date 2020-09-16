@@ -67,7 +67,10 @@ export class ProductEditComponent implements OnInit, AfterViewInit{
       description: ''
     });
 
-    this.route.data.subscribe(data =>{
+      this.product = data['resolvedData'].product;
+    
+    
+    this.route..parent.data.subscribe(data =>{
       const resolvedData : ProductResolved = data['resolvedData'];
       this.getProduct(resolvedData);
     });
