@@ -4,7 +4,7 @@ import { IProduct } from "../product";
 import { NgForm } from "@angular/forms";
 
 @Component({
-  templateUrl: './product-edit-info.component'
+  templateUrl: './product-edit-info.component.html'
 })
 export class ProductEditInfoComponent implements OnInit {
 

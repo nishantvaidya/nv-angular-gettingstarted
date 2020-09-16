@@ -1,11 +1,11 @@
 import { OnInit, Component, ViewChildren, AfterViewInit, OnDestroy, ElementRef } from "@angular/core";
 import { FormGroup, FormControlName, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { IProduct, ProductResolved} from './product'
+import { IProduct, ProductResolved} from '../product'
 import { Subscription, Observable, fromEvent, merge } from "rxjs";
-import { GenericValidator } from "../shared/generic.validator";
-import { NumberValidators } from '../shared/number.validator';
+import { GenericValidator } from "../../shared/generic.validator";
+import { NumberValidators } from '../../shared/number.validator';
 import { ActivatedRoute, Router } from "@angular/router";
-import { ProductService } from "./product.service";
+import { ProductService } from "../product.service";
 import { debounceTime } from "rxjs/operators";
 
 @Component({
@@ -52,10 +52,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit{
 
 
   ngOnInit(): void{
-
-    
-
-    this.productForm = this.fb.group({
+  this.productForm = this.fb.group({
       productName:['',[
         Validators.required,
         Validators.minLength(3),
@@ -77,8 +74,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit{
   
 
   ngAfterViewInit(): void{
-
-    const controlBlurs : Observable<any>[] = this.formInputElements.
+   const controlBlurs : Observable<any>[] = this.formInputElements.
               map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur') );
     
     merge(this.productForm.valueChanges, ...controlBlurs).pipe(

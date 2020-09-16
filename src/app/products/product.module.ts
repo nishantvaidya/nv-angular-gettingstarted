@@ -5,14 +5,14 @@ import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
-import { ProductEditComponent } from './product-edit/product-edit.component';
-import  { ProductEditGuard } from './product-edit/product-edit.guard';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductData } from './product-data';
 import { ProductResolver } from './product-resolver.service';
 import { ProductEditInfoComponent } from './product-edit/product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit/product-edit-tags.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import  { ProductEditGuard } from './product-edit/product-edit.guard';
 
 @NgModule({
   declarations:[
@@ -42,7 +42,7 @@ import { ProductEditTagsComponent } from './product-edit/product-edit-tags.compo
         canDeactivate: [ProductEditGuard ],
         resolve: { resolvedData: ProductResolver },
         children: [
-          { path:'', redirectTo: 'ínfo', pathMatch: 'full'},
+          { path:'', redirectTo: 'tags', pathMatch: 'full'},
           { path:'info', component: ProductEditInfoComponent},
           { path:'tags', component: ProductEditTagsComponent}
         ]

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../product';
 
 @Component({
-  templateUrl: './product-edit-tags.component'
+  templateUrl: './product-edit-tags.component.html'
 })
 export class ProductEditTagsComponent {
 
