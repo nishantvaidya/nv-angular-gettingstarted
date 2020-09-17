@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent} from './page-not-found.component';
 import { AuthGuard } from './user/auth.guard';
+import { SelectiveStrategyService} from './selective-strategy.service'
 
 
 @NgModule({
@@ -17,16 +18,15 @@ import { AuthGuard } from './user/auth.guard';
         // Lazy loading using loadChildren method.
          path: 'products',
         //data: { preload: false },
-       // canL: [AuthGuard],
+       // canActivate: [AuthGuard],
+          data: { preload: false },
         loadChildren: () => import('./products/product.module').then(m => m.ProductModule)
       }, */
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', component: PageNotFoundComponent }
       
     ]
-    ,{
-      enableTracing : true
-    } 
+    ,{ enableTracing: true, preloadingStrategy: SelectiveStrategyService } 
     )],
   exports:[
     RouterModule
