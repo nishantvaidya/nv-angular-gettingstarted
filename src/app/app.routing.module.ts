@@ -17,7 +17,7 @@ import { AuthGuard } from './user/auth.guard';
         // Lazy loading using loadChildren method.
          path: 'products',
         //data: { preload: false },
-       // canActivate: [AuthGuard],
+       // canL: [AuthGuard],
         loadChildren: () => import('./products/product.module').then(m => m.ProductModule)
       }, */
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},

@@ -23,7 +23,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-   / ProductModule,
+    ProductModule,
     UserModule,
     MessageModule,
     AppRoutingModule

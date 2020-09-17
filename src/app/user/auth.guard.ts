@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate, CanLoad{
  
 
   canLoad(route: Route, segments: UrlSegment[]): boolean {
-    return this.checkLoggedIn(segments.join('/'));
+    return this.checkLoggedIn(route.path);
 
   }
 
