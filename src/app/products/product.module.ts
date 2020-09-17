@@ -13,6 +13,7 @@ import { ProductEditTagsComponent } from './product-edit/product-edit-tags.compo
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import  { ProductEditGuard } from './product-edit/product-edit.guard';
 import { ProductEditInfoComponent } from './product-edit/product-edit.info.component';
+import { AuthGuard } from '../user/auth.guard';
 
 @NgModule({
   declarations:[
@@ -29,24 +30,33 @@ import { ProductEditInfoComponent } from './product-edit/product-edit.info.compo
    ReactiveFormsModule,
    InMemoryWebApiModule.forRoot(ProductData),
    RouterModule.forChild([
-      { path: 'products', component: ProductListComponent},
-      { 
-        path: 'products/:id', 
-        component: ProductDetailComponent,
-        canActivate: [ProductDetailGuard ],
-        resolve: { resolvedData: ProductResolver }
-      },
-      { 
-        path: 'products/:id/edit', 
-        component: ProductEditComponent,
-        canDeactivate: [ProductEditGuard ],
-        resolve: { resolvedData: ProductResolver },
+      { path: 'products',
+        canActivate: [AuthGuard],
         children: [
-          { path:'', redirectTo: 'tags', pathMatch: 'full'},
-          { path:'info', component: ProductEditInfoComponent},
-          { path:'tags', component: ProductEditTagsComponent}
+         { 
+            path: '',
+            component: ProductListComponent
+         },
+        { 
+            path: ':id', 
+            component: ProductDetailComponent,
+            canActivate: [ProductDetailGuard ],
+            resolve: { resolvedData: ProductResolver }
+        },
+        { 
+              path: ':id/edit', 
+              component: ProductEditComponent,
+              canDeactivate: [ProductEditGuard ],
+              resolve: { resolvedData: ProductResolver },
+              children: [
+                { path:'', redirectTo: 'tags', pathMatch: 'full'},
+                { path:'info', component: ProductEditInfoComponent},
+                { path:'tags', component: ProductEditTagsComponent}
+                ]
+          }
         ]
-      }
+       }
+     
     ])
   ]
   
