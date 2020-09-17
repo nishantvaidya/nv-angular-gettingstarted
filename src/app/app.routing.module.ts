@@ -3,6 +3,7 @@ import { CommonModule} from '@angular/common'
 import { RouterModule } from '@angular/router';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent} from './page-not-found.component';
+import { AuthGuard } from './user/auth.guard';
 
 
 @NgModule({
@@ -12,12 +13,21 @@ import { PageNotFoundComponent} from './page-not-found.component';
   imports:[
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent},
+      /**{
+        // Lazy loading using loadChildren method.
+         path: 'products',
+        //data: { preload: false },
+       // canActivate: [AuthGuard],
+        loadChildren: () => import('./products/product.module').then(m => m.ProductModule)
+      }, */
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', component: PageNotFoundComponent }
       
-    ],{enableTracing : true})
-
-  ],
+    ]
+    ,{
+      enableTracing : true
+    } 
+    )],
   exports:[
     RouterModule
   ]

@@ -22,8 +22,8 @@ import { PageNotFoundComponent } from './page-not-found.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-     BrowserAnimationsModule,
-    ProductModule,
+    BrowserAnimationsModule,
+   / ProductModule,
     UserModule,
     MessageModule,
     AppRoutingModule

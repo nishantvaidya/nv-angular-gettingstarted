@@ -30,7 +30,8 @@ import { AuthGuard } from '../user/auth.guard';
    ReactiveFormsModule,
    InMemoryWebApiModule.forRoot(ProductData),
    RouterModule.forChild([
-      { path: 'products',
+      {
+        path: 'products',
         canActivate: [AuthGuard],
         children: [
          { 
@@ -54,10 +55,11 @@ import { AuthGuard } from '../user/auth.guard';
                 { path:'tags', component: ProductEditTagsComponent}
                 ]
           }
-        ]
-       }
+      ]
+      }
+   ])
      
-    ])
+    
   ]
   
 })
