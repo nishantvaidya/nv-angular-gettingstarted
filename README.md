@@ -1,3 +1,9 @@
-# nv-angular-gettingstarted
+# Angular Demo - Demo application.
+# Microfontend Architecture.
+## Autonomous feature.
+## Tech ownership.
+## Tech angostic.
+## Value driven.
+## User experience.
+## Microservice Driven
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/nv-angular-gettingstarted)
